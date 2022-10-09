@@ -73,7 +73,7 @@ resource "aws_instance" "my_node" {
   key_name               = aws_key_pair.my_key.id
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
-  user_data = file("userdata.tpl")
+  user_data              = data.template_file.ec2_script.rendered
 
   root_block_device {
     volume_size = 10
